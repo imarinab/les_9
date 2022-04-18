@@ -43,8 +43,8 @@ class Phone:
         return " "
 
 
-    def view_call_history(self):
-        for i in self.call_history:
+   # def view_call_history(self):
+     #   for i in self.call_history:
 
 
 
