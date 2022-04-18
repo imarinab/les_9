@@ -42,7 +42,7 @@ class Phone:
         print(f"{name} is calling, Phone number +{tel}\n")
         return " "
 
-
+Доделать
    # def view_call_history(self):
      #   for i in self.call_history:
 
