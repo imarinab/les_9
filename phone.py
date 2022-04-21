@@ -15,6 +15,8 @@
 """
 import datetime
 import random
+import time
+
 
 class Phone:
     brand: str
@@ -22,6 +24,7 @@ class Phone:
     issue_year: int
     call_history: list
     sms_history: list
+    is_busy: bool = False
 
     def __init__(self, brand, model, issue_year):
         self.brand = brand
@@ -36,15 +39,25 @@ class Phone:
 
 
     def receive_call(self, name, tel):
+        if self.is_busy:
+            print("Number is busy. Call back later")
+            return
         self.name = name
         self.tel = tel
-        self.call_history.append(["18.04.2022", "15:45", name, tel])
+        self.call_history.append({"18.04.2022", "15:45", name, tel})
         print(f"{name} is calling, Phone number +{tel}\n")
+        self.is_busy = True
+        time.sleep(1)
+        self.is_busy = False
         return " "
 
-Доделать!
-   # def view_call_history(self):
-     #   for i in self.call_history:
+
+    def view_call_history(self):
+        res = ""
+        for i in self.call_history:
+            res +=(f"{i[0]}, {i[1]},  {i[2]}, {i[3]}\n")
+
+        return res
 
 
 
@@ -64,9 +77,17 @@ phone1 = Phone("iPhone", "13 Pro", 2021)
 phone1.receive_call ("Dan", random.randint(3751000000, 3759999999))
 time.sleep(1)
 phone1.receive_sms ("Dan", random.randint(3751000000, 3759999999), "Hi, How are you?")
-time.sleep(1)
+time.sleep(2)
 phone1.receive_sms ("Alex", random.randint(3751000000, 3759999999), "Call me")
+time.sleep(2)
+phone1.receive_call ("Sam", random.randint(3751000000, 3759999999))
+time.sleep(1)
+phone1.receive_call ("Mary", random.randint(3751000000, 3759999999))
 time.sleep(1)
 
+print("________________\n")
+print("All information:\n")
+
 phone1.get_info()
+phone1.view_call_history()
 
